@@ -8,7 +8,7 @@ urlDB.run("CREATE TABLE IF NOT EXISTS urlsData(userid TEXT, shortenURL TEXT, toR
 usersDB.run("CREATE TABLE IF NOT EXISTS usersData(username TEXT, userid TEXT, email TEXT, password TEXT, token TEXT)");
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlenconded({extended: true}));
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.get("/", function(req, res){
 res.sendStatus(200);
