@@ -9,6 +9,26 @@
     <a href="/">Home</a>
     <a href="/auth/login">Login</a>
     <a href="/auth/register">Register</a>
-
-
+<form>
+  <label for="email">Email:</label><br>
+  <input type="text" id="email"><br>
+  <label for="username">Username:</label><br>
+  <input type="text" id="username"><br>
+  <label for="password">Password:</label><br>
+  <input type="text" id="password"><br><br>
+  <input onclick="submit()" type="submit" value="Submit">
+</form> 
+<script type="text/javascript">
+  function submit(){
+    var obj = {username: document.getElementById("username").value, email: document.getElementById("email").value, password: document.getElementById("password").value}
+    fetch("https://apishorten.progswer.me/auth/register", {
+      body: JSON.stringify(obj),
+      method: "POST",
+      mode: "cors",
+      headers: {"Content-Type":"application/json"}
+    }).then(res => {
+      
+    })
+  }
+</script>
 </html>
