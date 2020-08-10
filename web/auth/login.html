@@ -14,9 +14,24 @@
   <input type="text" id="username"><br>
   <label for="password">Password:</label><br>
   <input type="password" id="password"><br><br>
-  <input onclick="submit()" type="submit" value="Submit">
+  <button onclick="submit()">Login</button>
 </form> 
 <script type="text/javascript">
-  
+    function submit(){
+    var obj = {username: document.getElementById("username").value, email: document.getElementById("email").value, password: document.getElementById("password").value}
+    fetch("https://apishorten.progswer.me/auth/register", {
+      body: JSON.stringify(obj),
+      method: "POST",
+      mode: "cors",
+      headers: {"Content-Type":"application/json"}
+    }).then(res => {
+      if (!res.success) {
+        alert(res.msg)
+      } else {
+        window.location.href = "/panel";
+        window.localStorage.setItem("token", res.msg)
+      }
+    })
+  }
 </script>
 </html>

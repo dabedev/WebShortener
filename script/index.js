@@ -14,7 +14,7 @@ app.get("/", function(req, res){
 res.sendStatus(200);
 });
 
-app.get("/user/:TOKEN", function(req, res){
+app.get("/user", function(req, res){
 
 });
 
@@ -23,6 +23,10 @@ app.get("/url/:shortenURL", function(req, res){
 });
 
 app.post("/urls/add", function(req, res){
+
+});
+
+app.get("/urls/list", function(req, res){
 
 });
 

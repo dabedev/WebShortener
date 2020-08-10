@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>WebShortener</title>
+  </head>
+  <body>
+ <a href="/panel/url/add">Add URL</a>
+<p>Username:</p>
+<p id="username"></p>
+<script type="text/javascript">
+	var obj = {token:window.localStorage.getItem("token")}
+    fetch("https://apishorten.progswer.me/user", {
+      body: JSON.stringify(obj),
+      method: "POST",
+      mode: "cors",
+      headers: {"Content-Type":"application/json"}
+    }).then(res => {
+      if (!res.success) {
+        window.location.href = "/";
+      } else {
+        window.location.href = "/panel";
+        res.msg = JSON.parse(res.msg);
+        document.getElementById("username").innerHTML = res.msg.username
+        fetch("https://https://apishorten.progswer.me/urls/list", {
+      body: JSON.stringify({userid: res.msg.userid}),
+      method: "POST",
+      mode: "cors",
+      headers: {"Content-Type":"application/json"}
+        }).then(response => {
+        	response.msg = JSON.parse(response.msg);
+        	    for(var key in response.msg) {
+    var div = document.createElement("div");
+    div.innerHTML = key.shortenURL + " | " + key.toRedirectURL;
+    document.body.appendChild(div);
+}
+        })
+      }
+    })
+</script>
+</html>

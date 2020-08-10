@@ -16,7 +16,7 @@
   <input type="text" id="username"><br>
   <label for="password">Password:</label><br>
   <input type="password" id="password"><br><br>
-  <input onclick="submit()" type="submit" value="Submit">
+  <button onclick="submit()">Register</button>
 </form> 
 <script type="text/javascript">
   function submit(){
@@ -27,7 +27,11 @@
       mode: "cors",
       headers: {"Content-Type":"application/json"}
     }).then(res => {
-
+      if (!res.success) {
+        alert(res.msg)
+      } else {
+        window.location.href = "/auth/login";
+      }
     })
   }
 </script>
